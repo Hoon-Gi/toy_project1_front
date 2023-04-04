@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import LoginPage from './screens/LoginScreen';
+import { StyledHeader } from './css/header';
+import SideBar from './components/SideBar';
+import AllStudyRoomList from './components/GetAllStudyRoomLists';
+import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import InsertMemberInfo from './components/InsertMemberInfo';
+import InsertStudyRoomInfo from './components/InsertStudyRoomInfo';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <div>
+          <StyledHeader>
+            <LoginPage />
+          </StyledHeader>
+        </div>
+
+        <div>
+          <SideBar />
+
+        </div>
+        <div>
+          <Routes>
+            <Route path="/" element={<InsertMemberInfo />} />
+            <Route path="/studyRoom/readAll" element={<AllStudyRoomList />} />
+            <Route path="/api/member/insert" element={<InsertMemberInfo/>}/>
+            <Route path="/api/studyRoom/insert" element={<InsertStudyRoomInfo/>}/>
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
-}
+};
+
 
 export default App;
